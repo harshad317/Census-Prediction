@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href={{url_for('static',filename='predictor.css')}}>
+    <title>Census Prediction</title>
+</head>
+<body>
+    <section id="prediction-form">
+        <form class="form" action="/predict", method="POST">
+            <h1 class="my-3 text-center">Predictor</h1>
+            <div class="row">
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="age" class="age">age</label>
+                        <input type="text" class="form-control" id="age" name="age">
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="workclass" class="workclass" name="workclass">workclass</label>
+                        <select class="workclass" id="workclass" name="workclass" aria-label="workclass">
+                            <option selected>Select workclass</option>
+                            <option value= 0>State-gov</option>
+                            <option value= 1>Self-emp-not-inc</option>
+                            <option value= 2>Private</option>
+                            <option value= 3>Federal-gov</option>
+                            <option value= 4>Local-gov</option>
+                            <option value= 5>?</option>
+                            <option value= 6>Self-emp-inc</option>
+                            <option value= 7>Without-pay</option>
+                            <option value= 8>Never-worked</option>
+                            
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="fnlwgt" class="fnlwgt">fnlwgt</label>
+                        <input type="text" class="form-control" id="fnlwgt" name="fnlwgt">
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="education" class="education" name = "education">education</label>
+                        <select class="education" id="education" name="education" aria-label="education">
+                            <option selected>Select education</option>
+                            <option value= 0>Preschool</option>
+                            <option value= 1>1st-4th</option>
+                            <option value= 2>5th-6th</option>
+                            <option value= 3>7th-8th</option>
+                            <option value= 4>9th</option>
+                            <option value= 5>10th</option>
+                            <option value= 6>11th</option>
+                            <option value= 7>12th</option>
+                            <option value= 8>HS-grad</option>
+                            <option value= 9>Some-college</option>
+                            <option value= 10>Bachelors</option>
+                            <option value= 11>Assoc-acdm</option>
+                            <option value= 12>Assoc-voc</option>
+                            <option value= 13>Prof-school</option>
+                            <option value= 14>Masters</option>
+                            <option value= 15>Doctorate</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="education_num" class="education_num">education_num</label>
+                        <input type="text" class="form-control" id="education_num" name="education_num">
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="marital_status" class="marital_status" name = "marital_status">marital_status</label>
+                        <select class="marital_status" id="marital_status" name = "marital_status" aria-label="marital_status">
+                            <option selected>Select marital status</option>
+                            <option value= 0>Never-married</option>
+                            <option value= 1>Married-civ-spouse</option>
+                            <option value= 2>Divorced</option>
+                            <option value= 3>Married-spouse-absent</option>
+                            <option value= 4>Separated</option>
+                            <option value= 5>Married-AF-spouse</option>
+                            <option value= 6>Widowed</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="occupation" class="occupation" name = "occupation">occupation</label>
+                        <select class="occupation" id="occupation" name = "occupation" aria-label="occupation">
+                            <option selected>Select occupation</option>
+                            <option value= 0>Adm-clerical</option>
+                            <option value= 1>Exec-managerial</option>
+                            <option value= 2>Handlers-cleaners</option>
+                            <option value= 3>Prof-specialty</option>
+                            <option value= 4>Other-service</option>
+                            <option value= 5>Sales</option>
+                            <option value= 6>Craft-repair</option>
+                            <option value= 7>Transport-moving</option>
+                            <option value= 8>Farming-fishing</option>
+                            <option value= 9>Machine-op-inspct</option>
+                            <option value= 10>Tech-support</option>
+                            <option value= 11>?</option>
+                            <option value= 12>Protective-serv</option>
+                            <option value= 13>Armed-Forces</option>
+                            <option value= 14>Priv-house-serv</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="relationship" class="relationship" name = "relationship">relationship</label>
+                        <select class="relationship" id="relationship" name = "relationship" aria-label="relationship">
+                            <option selected>Select relationship</option>
+                            <option value= 0>Not-in-family</option>
+                            <option value= 1>Husband</option>
+                            <option value= 2>Wife</option>
+                            <option value= 3>Own-child</option>
+                            <option value= 4>Unmarried</option>
+                            <option value= 5>Other-relative</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="race" class="race" name = "race">race</label>
+                        <select class="race" id="race" name = "race" aria-label="race">
+                            <option selected>Select race</option>
+                            <option value= 0>White</option>
+                            <option value= 1>Black</option>
+                            <option value= 2>Asian-Pac-Islander</option>
+                            <option value= 3>Amer-Indian-Eskimo</option>
+                            <option value= 4>Other</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="sex" class="sex" name="sex">sex</label>
+                        <select class="sex" id="sex" name="sex" aria-label="sex">
+                            <option selected>Select sex</option>
+                            <option value= 1>Male</option>
+                            <option value= 0>Female</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="capital_gain" class="capital_gain">capital_gain</label>
+                        <input type="text" class="form-control" id="capital_gain" name="capital_gain">
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="capital_loss" class="capital_loss">capital_loss</label>
+                        <input type="text" class="form-control" id="capital_loss" name="capital_loss">
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="working_hours_weekly" class="working_hours_weekly">working_hours_weekly</label>
+                        <input type="text" class="form-control" id="working_hours_weekly" name="working_hours_weekly">
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="country" class="country" name="country">country</label>
+                        <select class="country" id="country" name="country" aria-label="country">
+                            <option selected>Select sex</option>
+                            <option value= 0>United-States</option>
+                            <option value= 1>Cuba</option>
+                            <option value= 2>Jamaica</option>
+                            <option value= 3>India</option>
+                            <option value= 4>?</option>
+                            <option value= 5>Mexico</option>
+                            <option value= 6>South</option>
+                            <option value= 7>Puerto-Rico</option>
+                            <option value= 8>Honduras</option>
+                            <option value= 9>England</option>
+                            <option value= 10>Canada</option>
+                            <option value= 11>Germany</option>
+                            <option value= 12>Iran</option>
+                            <option value= 13>Philippines</option>
+                            <option value= 14>Italy</option>
+                            <option value= 15>Poland</option>
+                            <option value= 16>Columbia</option>
+                            <option value= 17>Cambodia</option>
+                            <option value= 18>Thailand</option>
+                            <option value= 19>Ecuador</option>
+                            <option value= 20>Laos</option>
+                            <option value= 21>Taiwan</option>
+                            <option value= 22>Haiti</option>
+                            <option value= 23>Portugal</option>
+                            <option value= 24>Dominican-Republic</option>
+                            <option value= 25>El-Salvador</option>
+                            <option value= 26>France</option>
+                            <option value= 27>Guatemala</option>
+                            <option value= 28>China</option>
+                            <option value= 29>Japan</option>
+                            <option value= 30>Yugoslavia</option>
+                            <option value= 31>Peru</option>
+                            <option value= 32>Outlying-US(Guam-USVI-etc)</option>
+                            <option value= 33>Scotland</option>
+                            <option value= 34>Trinadad&Tobago</option>
+                            <option value= 35>Greece</option>
+                            <option value= 36>Nicaragua</option>
+                            <option value= 37>Vietnam</option>
+                            <option value= 38>Hong</option>
+                            <option value= 39>Ireland</option>
+                            <option value= 40>Hungary</option>
+                            <option value= 41>Holand-Netherlands</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6 my-2 d-flex align-items-end justify-content-around">
+                    <button type="submit" class="btn btn-info button" style="margin-left: 100%;">Predict</button>
+                </div>
+            </div>
+        </form>
+    </section>
+    <div>
+         <h1><center> {{ prediction}} </center></h1>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+</body>
+</html>
+
